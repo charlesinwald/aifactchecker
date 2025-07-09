@@ -1,7 +1,5 @@
-# Next.js + Contentlayer
+# Next.js App
 
-A template with Next.js 13 app dir, Contentlayer, Tailwind CSS and dark mode.
+A standard Next.js 13 app with Tailwind CSS and dark mode.
 
-https://next-contentlayer.vercel.app
-
-
+Contentlayer and MDX functionality has been removed.
