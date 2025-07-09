@@ -38,6 +38,9 @@ export const checkFact = async (claim: string): Promise<FactCheckResult> => {
     });
 
     const rawText = response.text;
+    if (!rawText) {
+      throw new Error("Model response was empty.");
+    }
     const parts = rawText.split('||');
     
     if (parts.length < 2) {
