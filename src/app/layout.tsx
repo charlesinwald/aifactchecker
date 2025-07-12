@@ -1,3 +1,4 @@
+import { ShadowBackground } from "@/components/ui/etheral-shadow";
 import "../../globals.css";
 import { Providers } from "./providers";
 
@@ -13,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body >
         <Providers>
           {children}
         </Providers>

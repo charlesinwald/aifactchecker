@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { SparklesIcon } from './icons';
+import { Textarea } from '@/components/ui/textarea';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 
 interface FactCheckerInputProps {
   claim: string;
@@ -13,7 +15,7 @@ const FactCheckerInput: React.FC<FactCheckerInputProps> = ({ claim, setClaim, on
   return (
     <form onSubmit={onSubmit} className="w-full">
       <div className="relative">
-        <textarea
+        <Textarea
           value={claim}
           onChange={(e) => setClaim(e.target.value)}
           placeholder="Paste a claim, news article, or tweet here..."
@@ -21,10 +23,10 @@ const FactCheckerInput: React.FC<FactCheckerInputProps> = ({ claim, setClaim, on
           disabled={isLoading}
         />
       </div>
-      <button
+      <RainbowButton
         type="submit"
         disabled={isLoading || !claim.trim()}
-        className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-3 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-brand-accent disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 disabled:scale-100"
+        className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-3 font-bold bg-black text-white rounded-lg disabled:bg-brand-accent disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 disabled:scale-100"
       >
         {isLoading ? (
           <>
@@ -37,7 +39,7 @@ const FactCheckerInput: React.FC<FactCheckerInputProps> = ({ claim, setClaim, on
             <span>Check Fact</span>
           </>
         )}
-      </button>
+      </RainbowButton>
     </form>
   );
 };
