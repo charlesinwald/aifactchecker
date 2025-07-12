@@ -44,7 +44,7 @@ const FactCheckResult: React.FC<FactCheckResultProps> = ({ result }) => {
                     href={source.uri}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-2 text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-200 group"
+                    className="flex items-start gap-2 text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-200 group max-w-2xl"
                   >
                     <LinkIcon className="w-5 h-5 mt-1 flex-shrink-0 text-brand-light group-hover:text-blue-300" />
                     <span className="break-all">{source.title || source.uri}</span>

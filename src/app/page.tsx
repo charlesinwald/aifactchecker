@@ -171,7 +171,7 @@ export default function App() {
                           href={source.uri}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-start gap-4 p-4 bg-slate-800/30 hover:bg-slate-800/50 rounded-xl border border-slate-700/30 hover:border-slate-600/50 transition-all duration-300 hover:scale-[1.01]"
+                          className="group flex items-start gap-4 p-4 bg-slate-800/30 hover:bg-slate-800/50 rounded-xl border border-slate-700/30 hover:border-slate-600/50 transition-all duration-300 hover:scale-[1.01] max-w-2xl"
                         >
                           <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
                             <LinkIcon className="w-4 h-4 text-blue-400" />
