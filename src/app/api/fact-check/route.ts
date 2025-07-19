@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { FactCheckResult, Source } from "../../types";
 
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     const response: GenerateContentResponse = await ai.models.generateContent({
-      model: "gemini-2.5-flash-preview-04-17",
+      model: "gemini-2.5-flash",
       contents: claim,
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
@@ -49,22 +49,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const parts = rawText.split('||');
-    
+    const parts = rawText.split("||");
+
     if (parts.length < 2) {
       // Fallback if the model doesn't follow the format
-      console.warn("Model response did not contain '||' separator. Treating entire text as reasoning.");
+      console.warn(
+        "Model response did not contain '||' separator. Treating entire text as reasoning."
+      );
       return NextResponse.json({
-        verdict: 'Uncertain',
-        reasoning: rawText || "The model provided a response, but it was not in the expected format.",
+        verdict: "Uncertain",
+        reasoning:
+          rawText ||
+          "The model provided a response, but it was not in the expected format.",
         sources: [],
       });
     }
 
     const [verdict, ...reasoningParts] = parts;
-    const reasoning = reasoningParts.join('||').trim();
+    const reasoning = reasoningParts.join("||").trim();
 
-    const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks ?? [];
+    const groundingChunks =
+      response.candidates?.[0]?.groundingMetadata?.groundingChunks ?? [];
     const sources: Source[] = groundingChunks
       .map((chunk: any) => ({
         uri: chunk.web?.uri,
@@ -73,8 +78,10 @@ export async function POST(request: NextRequest) {
       .filter((source: Source) => source.uri && source.title);
 
     // Deduplicate sources based on URI
-    const uniqueSources = Array.from(new Map(sources.map(s => [s.uri, s])).values());
-      
+    const uniqueSources = Array.from(
+      new Map(sources.map((s) => [s.uri, s])).values()
+    );
+
     const result: FactCheckResult = {
       verdict: verdict.trim(),
       reasoning,
@@ -85,7 +92,12 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error calling Gemini API:", error);
     return NextResponse.json(
-      { error: error instanceof Error ? `Failed to check fact: ${error.message}` : "An unknown error occurred during fact checking." },
+      {
+        error:
+          error instanceof Error
+            ? `Failed to check fact: ${error.message}`
+            : "An unknown error occurred during fact checking.",
+      },
       { status: 500 }
     );
   }
