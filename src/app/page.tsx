@@ -91,6 +91,12 @@ export default function App() {
                     id="claim-input"
                     value={claim}
                     onChange={(e) => setClaim(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault()
+                        handleSubmit(e)
+                      }
+                    }}
                     placeholder="Paste a claim, news article, or statement here..."
                     className="p-3 min-h-[120px] bg-slate-800/50 border-slate-600/50 text-white placeholder:text-slate-500 focus:border-blue-500/50 focus:ring-blue-500/20 resize-none text-base leading-relaxed"
                     disabled={isLoading}
