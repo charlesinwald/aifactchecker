@@ -9,6 +9,7 @@ import type { FactCheckResult as FactCheckResultType } from "./types"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import ClassicLoader from "@/components/ui/loader"
 
 export default function App() {
   const [claim, setClaim] = useState<string>("")
@@ -105,7 +106,7 @@ export default function App() {
               >
                 {isLoading ? (
                   <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
+                    <ClassicLoader />
                     <span>Analyzing Truth...</span>
                   </div>
                 ) : (

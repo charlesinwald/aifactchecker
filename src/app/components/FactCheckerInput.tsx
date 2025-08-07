@@ -3,6 +3,7 @@ import React from 'react';
 import { SparklesIcon } from './icons';
 import { Textarea } from '@/components/ui/textarea';
 import { RainbowButton } from '@/components/ui/rainbow-button';
+import ClassicLoader from '@/components/ui/loader';
 
 interface FactCheckerInputProps {
   claim: string;
@@ -30,7 +31,7 @@ const FactCheckerInput: React.FC<FactCheckerInputProps> = ({ claim, setClaim, on
       >
         {isLoading ? (
           <>
-            <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
+            <ClassicLoader />
             <span>Analyzing...</span>
           </>
         ) : (
